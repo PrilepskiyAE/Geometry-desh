@@ -8,17 +8,38 @@ public class PlayerMove : MonoBehaviour
     private Transform _player;
     [SerializeField]
     private float _maxYPosition = 5.5f;
+    private float _yPosition;
+    private float _oldYPosition;
 
     void Update()
     {
         transform.Translate(Vector3.right * _speed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.Space) && (_player.position.y < _maxYPosition))
+        if (Input.GetKey(KeyCode.Space))
         {
-            _player.Translate(Vector3.up *_speed* Time.deltaTime);
+            _yPosition += _speed * Time.deltaTime;  
         }
-        else if(_player.position.y>-_maxYPosition){
-            _player.Translate(Vector3.down * _speed * Time.deltaTime);
+        else
+        {
+            _yPosition -= _speed * Time.deltaTime;
+
         }
 
+        _yPosition = Mathf.Clamp(_yPosition,-_maxYPosition, _maxYPosition);
+        _player.localPosition=new Vector3(0,_yPosition,0);
+
+
+        if (_yPosition > _oldYPosition)
+        {
+            _player.localEulerAngles = new Vector3(0, 0, 45);
+        }
+        else if (_yPosition < _oldYPosition)
+        {
+            _player.localEulerAngles = new Vector3(0, 0, -45);
+        }
+        else {
+            _player.localEulerAngles = new Vector3(0, 0, 0);
+        }
+
+        _oldYPosition = _yPosition;
     }
 }
