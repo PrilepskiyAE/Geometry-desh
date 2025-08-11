@@ -14,10 +14,10 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.right * _speed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.Space))
-        {
+        if (Input.GetMouseButton(0))
+           {
             _yPosition += _speed * Time.deltaTime;  
-        }
+           }
         else
         {
             _yPosition -= _speed * Time.deltaTime;
@@ -42,4 +42,6 @@ public class PlayerMove : MonoBehaviour
 
         _oldYPosition = _yPosition;
     }
+
+    
 }
