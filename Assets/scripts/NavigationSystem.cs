@@ -21,5 +21,5 @@ public class NavigationSystem : MonoBehaviour
 
     }
 
-    public string getName() {  return SceneManager.GetActiveScene().name;}
+    public string getName() {  return SceneManager.GetActiveScene().buildIndex.ToString(); }
 }

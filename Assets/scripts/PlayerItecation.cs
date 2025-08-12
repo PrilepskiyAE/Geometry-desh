@@ -43,19 +43,27 @@ public class PlayerItecation : MonoBehaviour
        
     }
 
-   
+   void Restart()
+    {
+        _nav.Restart();
+    }
+
+    void NextLevel()
+    {
+        _nav.NextLevel();
+    }
 
     private void Lose()
     {
     Stop();
      _loseEffect.SetActive(true);
-        Invoke(nameof(_nav.Restart), 2f);
+        Invoke(nameof(Restart), 2f);
     }
     private void Win()
     {
         Stop();
         _winEffect.SetActive(true);
-        Invoke(nameof(_nav.NextLevel), 2f);
+        Invoke(nameof(NextLevel), 2f);
     }
 
 }
